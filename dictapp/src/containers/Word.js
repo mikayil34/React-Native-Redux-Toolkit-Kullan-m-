@@ -1,43 +1,59 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect } from 'react'
-import { Style } from "../../Style";
+
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../stor/Slice';
- 
+import Button from './Button';
+import ButtonWhite from './ButtonWhite';
 
-export default function Word() {
-  const dictionary = useSelector((state) => state.dictionary);
-  const dispatch = useDispatch();
 
-  const word=dictionary.words[dictionary.count-1]; 
-  if(!word){
-    return <Text style={Style.words}>No word</Text>
-  }
+export default function Word({ word, length, count, decrement, increment }) {
+
   return (
     <>
-      <Text style={Style.words}>
-        {dictionary.count}<AntDesign name="heart" size={40} color="red" />f
-        <Text style={Style.current}>  {dictionary.length} </Text>
-      </Text>
-
       <View style={Style.word}>
-        <View style={Style.wordSegment}>
-          <TouchableOpacity onPress={() => dispatch(decrement()) }>
-            <AntDesign name="left" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View style={[Style.wordSegment, { flex: 3 }]}>
+        <View style={[Style.wordSegment]}>
           <Text style={Style.en}> {word.en} </Text>
           <Text style={Style.tr}>{word.tr}</Text>
         </View>
-        <View style={Style.wordSegment}>
-          <TouchableOpacity onPress={() =>  dispatch(increment())}>
-            <AntDesign name="right" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
+      </View>
+      <View style={Style.buttonList}>
+         <View style={Style.button}>
+          </View>
+          <View style={Style.button}>
+
+            </View>
+
       </View>
     </>
   )
 }
+const Style = StyleSheet.create({
+  buttonList: {
+    flex: 1,
+    width: "auto",
+height: "auto", 
+
+  },
+  words: {
+    fontSize: 60,
+    fontWeight: "bold"
+  },
+  word: {
+    flexDirection: "row",
+    width: "90%", height: 200
+  },
+  wordSegment: {
+    flex: 1,
+    justifyContent: "center", alignItems: "center"
+  },
+  en: {
+    fontWeight: "bold",
+    fontSize: 40
+  },
+  tr: {
+    fontWeight: "bold",
+    fontSize: 25, color: "gray"
+  },
+});
+
 

@@ -22,20 +22,7 @@ export default function ModalView() {
     }
 
   }, [isModel]);
-  useEffect(() => {
-    var words = WORDS;
-    words.map((word) => {
-      dispatch(add({ 
-        en: word.en,
-        tr: word.tr,
-        trtext: word.trtext,
-        enText: word.enText 
-      }))
-    });
-    // dispatch(setdata(words));
-
-
-  }, [WORDS]);
+  
 
   const saveHandler = () => {
 
