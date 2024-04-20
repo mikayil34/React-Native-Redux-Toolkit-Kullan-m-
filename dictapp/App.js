@@ -6,26 +6,25 @@ import { Style } from "./Style";
 import Create from "./src/containers/Create";
 import Word from "./src/containers/Word";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Provider } from "react-redux";
+import Stor from "./src/stor/Stor";
 
 export default function App() {
-  const [modal, setModal] = useState(false);
-
   return (
-    <View
-      style={[
-        Style.container,
-        { backgroundColor: !modal ? "white" : "rgba(37, 37, 37, 0.4)" },
-      ]}
-    >
-      <StatusBar style="auto" />
-      <Word />
-      <Create setModal={setModal} />
-    </View>
+    <Provider store={Stor}>
+
+      <View style={Style.container} >
+        <StatusBar style="auto" />
+        <Word />
+        <Create />
+        
+      </View>
+    </Provider>
   );
 }
 
- 
 
- 
 
- 
+
+
+
