@@ -13,7 +13,7 @@ export default function WordScreen() {
         return <Text style={styles.words}>No word</Text>
     }
     return (
-        <View>
+        <View style={styles.container}>
             <Word word={word}
                 length={dictionary.length}
                 count={dictionary.count}
@@ -27,5 +27,10 @@ export default function WordScreen() {
 
 const styles = StyleSheet.create({
 
-
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    
 })

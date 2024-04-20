@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WordScreen from "./src/screens/WordScreen";
 import { Ionicons } from '@expo/vector-icons';
 import NewWordScreen from "./src/screens/NewWordScreen";
+import QuizScreen from "./src/screens/QuizScreen";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
         />
         <Stack.Screen name="Word" component={WordScreen} />
         <Stack.Screen name="NewWord" component={NewWordScreen} />
+        <Stack.Screen name="Quiz" component={QuizScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 

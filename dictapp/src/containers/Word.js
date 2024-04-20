@@ -1,59 +1,62 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import Box from './Box';
 
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import Button from './Button';
-import ButtonWhite from './ButtonWhite';
+const BOX_WIDTH = 350;
+const BOX_HEIGHT = 200;
 
 
 export default function Word({ word, length, count, decrement, increment }) {
-
   return (
-    <>
-      <View style={Style.word}>
-        <View style={[Style.wordSegment]}>
-          <Text style={Style.en}> {word.en} </Text>
-          <Text style={Style.tr}>{word.tr}</Text>
+    <View style={styles.container}>
+      <Box style={{ backgroundColor: "blue" }}>
+        {word.en.toUpperCase()}
+      </Box>
+      <Box style={{ backgroundColor: "green" }}>
+        {word.tr.toUpperCase()}
+      </Box>
+      <Box style={{ backgroundColor: "white" }}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={()=>decrement()}>
+            <Text style={styles.buttonText}>Geri</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={()=>increment()}>
+            <Text style={styles.buttonText}>İleri</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={Style.buttonList}>
-         <View style={Style.button}>
-          </View>
-          <View style={Style.button}>
-
-            </View>
-
-      </View>
-    </>
-  )
+      </Box> 
+    </View>
+  );
 }
-const Style = StyleSheet.create({
-  buttonList: {
+
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    width: "auto",
-height: "auto", 
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
 
   },
-  words: {
-    fontSize: 60,
-    fontWeight: "bold"
+  button: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 5,
+    marginRight: 10,
+    width: 100,
+    height: 50,
   },
-  word: {
-    flexDirection: "row",
-    width: "90%", height: 200
-  },
-  wordSegment: {
-    flex: 1,
-    justifyContent: "center", alignItems: "center"
-  },
-  en: {
-    fontWeight: "bold",
-    fontSize: 40
-  },
-  tr: {
-    fontWeight: "bold",
-    fontSize: 25, color: "gray"
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
-
-
