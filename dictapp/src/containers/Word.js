@@ -11,6 +11,9 @@ export default function Word() {
   const dispatch = useDispatch();
 
   const word=dictionary.words[dictionary.count-1]; 
+  if(!word){
+    return <Text style={Style.words}>No word</Text>
+  }
   return (
     <>
       <Text style={Style.words}>

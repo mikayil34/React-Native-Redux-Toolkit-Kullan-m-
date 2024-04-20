@@ -3,43 +3,58 @@ import React, { useEffect, useState } from 'react'
 import { Style } from "../../Style";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from 'react-redux';
-import { add, setLength, setmodul } from '../stor/Slice';
+import { add, setdata, setmodul } from '../stor/Slice';
+import { WORDS } from '../data/seedData';
 
 
 export default function ModalView() {
   const [englishValue, setEnglishValue] = useState('');
+  const [englishTextValue, setEnglishTextValue] = useState('');
   const [turkishValue, setTurkishValue] = useState('');
-  const dictionary = useSelector((state) => state.dictionary);
+  const [turkishTextValue, setTurkishTextValue] = useState('');
+  const { length, isModel } = useSelector((state) => state.dictionary);
   const dispatch = useDispatch();
   useEffect(() => {
 
-    console.log(dictionary.length);
-    if (dictionary.isModel) {
+    if (isModel) {
       setEnglishValue('');
       setTurkishValue('');
     }
 
+  }, [isModel]);
+  useEffect(() => {
+    var words = WORDS;
+    words.map((word) => {
+      dispatch(add({ 
+        en: word.en,
+        tr: word.tr,
+        trtext: word.trtext,
+        enText: word.enText 
+      }))
+    });
+    // dispatch(setdata(words));
 
-  }, [dictionary.isModel]);
+
+  }, [WORDS]);
 
   const saveHandler = () => {
-   
+
     if (englishValue.trim() === '' || turkishValue.trim() === '') {
       return;
     }
-    dispatch(add({
-      id: dictionary.length + 1,
+    dispatch(add({ 
       en: englishValue,
-      tr: turkishValue
-     }))
-     dispatch(setLength(dictionary.length + 1))
+      tr: turkishValue,
+      trtext: turkishTextValue,
+      enText: englishTextValue
+    }))
     dispatch(setmodul(false));
   }
   return (
     <Modal
       transparent
       animationType="slide"
-      visible={dictionary.isModel}
+      visible={isModel}
       onRequestClose={() => dispatch(setmodul(false))}
     >
       <View style={Style.modal}>
@@ -56,7 +71,15 @@ export default function ModalView() {
           onChangeText={text => setTurkishValue(text)}
           value={turkishValue}
         />
-
+        <TextInput placeholder="TurkishText" style={Style.textBox}
+          onChangeText={text => setTurkishTextValue(text)}
+          value={turkishTextValue}
+        />
+        <TextInput placeholder="EnglishText" style={Style.textBox}
+          onChangeText={text => setEnglishTextValue(text)}
+          value={englishTextValue}
+        />
+       
         <TouchableOpacity onPress={saveHandler}>
           <View style={Style.button}>
             <AntDesign name="heart" size={20} color="red" />
