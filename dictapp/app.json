@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Contapp",
-    "slug": "Contapp",
+    "name": "engilishEducation",
+    "slug": "engilishEducation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mikayil34.engilisEducation"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b569f75c-cfb5-46e7-ad43-6e51a3179896"
+      }
     }
   }
 }

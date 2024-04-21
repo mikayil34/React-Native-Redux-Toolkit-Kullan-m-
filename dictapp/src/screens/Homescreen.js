@@ -12,10 +12,10 @@ export default function Homescreen({ navigation }) {
         var words = WORDS;
         words.map((word) => {
             dispatch(add({
-                en: word.en,
-                tr: word.tr,
-                trtext: word.trtext,
-                enText: word.enText
+                en: word.en.toUpperCase(),
+                tr: word.tr.toUpperCase(),
+                trtext: word.trtext.toUpperCase(),
+                enText: word.enText.toUpperCase()
             }))
         });
         // dispatch(setdata(words));

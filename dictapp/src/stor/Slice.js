@@ -6,20 +6,27 @@ import wordDto from '../model/WordModel';
 const slice = createSlice({
     name: 'dictionary',
     initialState: {
-        words: [
-
-        ],
-        word2: [],
+        words: [],
+        quiz: [],
+        quizAnswer: [],  
         count: 1,
         length: 0,
         isModel: false,
-
+        userId: "aef1", 
     },
 
     reducers: {
-        setdata: (state, actions) => {
-            state.word2 = actions.payload;
+        setQuiz: (state, actions) => {
+            state.quiz = actions.payload;
+        },
+        setQuizAnswer: (state, actions) => {
+            const quizAnswer = actions.payload;
+            const isDuplicate = state.quizAnswer.some(w => w.id === quizAnswer.id);
+            quizAnswer.userId = state.userId;
+            state.quizAnswer = [...state.quizAnswer, quizAnswer];
+
         }
+
         ,
         add(state, actions) {
             const word = actions.payload;
@@ -64,4 +71,4 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
-export const { add, remove, update, increment, decrement, setmodul, setdata } = slice.actions;
+export const { add, remove, update, increment, decrement, setmodul, setQuiz,setQuizAnswer } = slice.actions;
