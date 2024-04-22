@@ -42,11 +42,11 @@ export default function QuizScreen() {
           question: newWords[i],
           questionId: newWords[i].id,
           statusType: randomStatus,
-          answer: []
+          answer: [newWords[i]]
         };
         const randomAnswerList = [];
         randomAnswerList.push(i); // to prevent duplicate answer indices
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < 3; j++) {
           let randomNumber;
           do {
             randomNumber = generateRandomNumber(0, 19);
